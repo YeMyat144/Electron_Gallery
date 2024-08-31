@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Details</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container text-center">
+        <h1 id="photo-title" class="my-4 text-light text-shadow">Photo Title</h1>
+        <img id="photo-img" src="" alt="Photo" class="img-fluid rounded shadow-lg">
+        <p id="photo-caption" class="text-light mt-4"></p>
+        <a id="photo-download" href="#" download class="btn btn-success mt-3">Download</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get the query parameters from the URL
+            const params = new URLSearchParams(window.location.search);
+            const src = params.get('src');
+            const caption = params.get('caption');
+            const download = params.get('download');
+
+            // Set the image and caption details
+            document.getElementById('photo-img').src = src;
+            document.getElementById('photo-caption').textContent = caption;
+            document.getElementById('photo-download').href = src;
+            document.getElementById('photo-download').download = download;
+            document.getElementById('photo-title').textContent = caption;
+        });
+    </script>
+</body>
+</html>
