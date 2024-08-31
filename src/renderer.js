@@ -33,7 +33,8 @@ document.addEventListener('DOMContentLoaded', function() {
     imgElement.className = 'img-fluid rounded shadow-lg';
     imgElement.style.cursor = 'pointer';
     imgElement.addEventListener('click', function() {
-      openLightbox(image.src);
+      // Redirect to the details page with image details as query parameters
+      window.location.href = `photo-details.html?src=${encodeURIComponent(image.src)}&caption=${encodeURIComponent(image.caption)}&download=${encodeURIComponent(image.download)}`;
     });
 
     const captionDiv = document.createElement('div');
@@ -54,43 +55,4 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   document.body.appendChild(galleryContainer);
-
-  // Lightbox Modal
-  const modal = document.createElement('div');
-  modal.className = 'modal';
-  modal.id = 'lightboxModal';
-
-  const modalDialog = document.createElement('div');
-  modalDialog.className = 'modal-dialog modal-dialog-centered';
-
-  const modalContent = document.createElement('div');
-  modalContent.className = 'modal-content bg-dark';
-
-  const modalBody = document.createElement('div');
-  modalBody.className = 'modal-body';
-
-  const modalImg = document.createElement('img');
-  modalImg.id = 'lightboxImage';
-  modalImg.className = 'img-fluid rounded';
-
-  const closeButton = document.createElement('button');
-  closeButton.type = 'button';
-  closeButton.className = 'btn-close btn-close-white position-absolute top-0 end-0 m-3';
-  closeButton.addEventListener('click', closeLightbox);
-
-  modalBody.appendChild(modalImg);
-  modalContent.appendChild(modalBody);
-  modalContent.appendChild(closeButton);
-  modalDialog.appendChild(modalContent);
-  modal.appendChild(modalDialog);
-  document.body.appendChild(modal);
-
-  function openLightbox(imgSrc) {
-    modalImg.src = imgSrc;
-    modal.style.display = 'block';
-  }
-
-  function closeLightbox() {
-    modal.style.display = 'none';
-  }
 });
